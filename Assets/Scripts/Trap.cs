@@ -7,12 +7,13 @@ public abstract class Trap : MonoBehaviour, IDamagable
     //  Inheritance from IDamagable and implementation of it 
     public void TakeDamage(int howMuch)
     {
-        // TODO: Implement logic later 
+        Die();
     }
     public void Die()
     {
-        // TODO: Implement logic later 
+        // Destroy the current trap object
+        Destroy(gameObject);
     }
-    
+
     // optional implementation : layerMask whatIDamage
 }

@@ -10,12 +10,22 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
     public int health { get { return currentHp; } }
     private int currentHp;
 
+    private GameManager gameManager;
+
+
     // Variables related to player character movement
     [SerializeField] protected Rigidbody2D rigidbody2d;
     public int speed;
     // Movement along X and Y axes.
     private float movementX;
     private float movementY;
+
+    void Start()
+    {
+        //Sets the current health to the maximum health points when the game starts
+        currentHp = maxHp;
+        gameManager = FindAnyObjectByType<GameManager>();
+    }
 
     // This function is called when a move input is detected.
     void OnMove(InputValue movementValue)
@@ -36,11 +46,22 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
 
     public void TakeDamage(int howMuch)
     {
-        // TODO: Implement logic later 
+        currentHp = currentHp - howMuch;
+        // Lose condition
+        if (currentHp <= 0)
+        {
+            Die();
+        }
     }
     public void Die()
     {
-        // TODO: Implement logic later 
+        // Destroy the current player object
+        Destroy(gameObject);
+        // Reload the scene
+        if (gameManager != null)
+        {
+            gameManager.GameOver();
+        }
     }
 
     public void Movement()
@@ -54,7 +75,10 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
 
     public void ApplyDamage(IDamagable damagable)
     {
-        // TODO: Implement logic later
+        if (damagable != null)
+        {
+            damagable.TakeDamage(1);
+        }
     }
 
     public void SpecialAbility()

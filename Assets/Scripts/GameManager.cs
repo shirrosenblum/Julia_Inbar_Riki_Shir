@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -61,5 +62,16 @@ public class GameManager : MonoBehaviour
         selectedPlayerIndex = (selectedPlayerIndex + 1) % players.Length;
         //New selected player
         activePlayer = Instantiate(players[selectedPlayerIndex]);
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("Game Over");
+        Invoke(nameof(ReloadScene), 3f);
+    }
+
+    void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
