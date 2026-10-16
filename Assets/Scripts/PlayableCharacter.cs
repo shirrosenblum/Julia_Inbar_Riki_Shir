@@ -16,6 +16,8 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
     // Variables related to player character movement
     [SerializeField] protected Rigidbody2D rigidbody2d;
     public int speed;
+
+    public Vector2 moveDirection = new Vector2(1, 0);
     // Movement along X and Y axes.
     private float movementX;
     private float movementY;
@@ -24,6 +26,7 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
     {
         //Sets the current health to the maximum health points when the game starts
         currentHp = maxHp;
+
         gameManager = FindAnyObjectByType<GameManager>();
     }
 
@@ -42,6 +45,11 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
     void FixedUpdate()
     {
         Movement();
+    }
+
+    void OnAttack(InputValue attackValue)
+    {
+        SpecialAbility();
     }
 
     public void TakeDamage(int howMuch)
@@ -63,7 +71,6 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
             gameManager.GameOver();
         }
     }
-
     public void Movement()
     {
         // Create a 2D movement vector using the X and Y inputs.
@@ -71,6 +78,13 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
         // Apply the new position and move the Rigidbody directly using physics.
         Vector2 position = (Vector2)rigidbody2d.position + move * speed * Time.deltaTime;
         rigidbody2d.MovePosition(position);
+
+        // Checks if there is  movement 
+        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
+        {
+            moveDirection.Set(move.x, move.y);
+            moveDirection.Normalize();
+        }
     }
 
     public void ApplyDamage(IDamagable damagable)
@@ -81,8 +95,8 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
         }
     }
 
-    public void SpecialAbility()
+    protected virtual void SpecialAbility()
     {
-        // TODO: Implement logic later
+
     }
 }

@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     private int selectedPlayerIndex;
     private int selectedTrapIndex;
 
+    private int collectibleCount;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -62,6 +64,13 @@ public class GameManager : MonoBehaviour
         selectedPlayerIndex = (selectedPlayerIndex + 1) % players.Length;
         //New selected player
         activePlayer = Instantiate(players[selectedPlayerIndex]);
+    }
+
+    public void Collect(int amount)
+    {
+        // Increment the count of collectible objects collected.
+        collectibleCount = collectibleCount + amount;
+        Debug.Log("Count: " + collectibleCount);
     }
 
     public void GameOver()
