@@ -133,6 +133,7 @@ MonoBehaviour:
   rigidbody2d: {fileID: 6315582975920035478}
   speed: 5
   moveDirection: {x: 1, y: 0}
+  poitions: []
 --- !u!70 &20595558422571758
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -185,7 +186,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
