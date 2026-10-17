@@ -33,7 +33,8 @@ public class GameManager : MonoBehaviour
     {
         // Randomly select player index and instantiate it
         selectedPlayerIndex = Random.Range(0, players.Length);
-        activePlayer = Instantiate(players[selectedPlayerIndex]);
+        Vector2 playerPosition = new Vector2(-5, -6);
+        activePlayer = Instantiate(players[selectedPlayerIndex], playerPosition, Quaternion.identity);
     }
     void SpawnRandomTrap()
     {
@@ -75,20 +76,15 @@ public class GameManager : MonoBehaviour
         collectibleCount = collectibleCount + amount;
         Debug.Log("Count: " + collectibleCount);
 
-        if (collectibleCount >= allCollectibles )
+        if (collectibleCount >= allCollectibles)
         {
-            WinGame();
+            Win();
         }
     }
 
     public void GameOver()
     {
         Debug.Log("Game Over");
-        Invoke(nameof(ReloadScene), 1.5f);
-    }
-    public void WinGame()
-    {
-        Debug.Log("YOU WIN!");
         Invoke(nameof(ReloadScene), 1.5f);
     }
 
@@ -100,6 +96,7 @@ public class GameManager : MonoBehaviour
     public void Win()
     {
         Debug.Log("Win");
+        Invoke(nameof(ReloadScene), 1.5f);
         WinScreen.SetActive(true);
     }
 }
