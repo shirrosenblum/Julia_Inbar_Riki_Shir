@@ -142,5 +142,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87498e4d44e51944cb83f471b74864ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KillingPoition
-  hp: 20
+  hp: 1
   spriteRenderer: {fileID: 1479433999404018617}

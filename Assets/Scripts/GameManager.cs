@@ -1,13 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using Unity.Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
+    public CinemachineCamera cinemachineCamera; //Camera - to follow the player
     public GameObject[] players;
     public GameObject[] traps;
     public GameObject[] trapSpawnPoints;
     public GameObject WinScreen;
+    public GameObject gameoverScreen;
     private GameObject activePlayer;
     private int selectedPlayerIndex;
     private int selectedTrapIndex;
@@ -35,6 +38,11 @@ public class GameManager : MonoBehaviour
         selectedPlayerIndex = Random.Range(0, players.Length);
         Vector2 playerPosition = new Vector2(-5, -6);
         activePlayer = Instantiate(players[selectedPlayerIndex], playerPosition, Quaternion.identity);
+        if (cinemachineCamera != null && activePlayer != null)
+        {
+            cinemachineCamera.Target.TrackingTarget = activePlayer.transform;
+
+        }
     }
     void SpawnRandomTrap()
     {
@@ -86,6 +94,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game Over");
         Invoke(nameof(ReloadScene), 1.5f);
+        gameoverScreen.SetActive(true);
     }
 
     void ReloadScene()

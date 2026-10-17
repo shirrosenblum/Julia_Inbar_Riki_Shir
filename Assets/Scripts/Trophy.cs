@@ -10,7 +10,7 @@ public class Trophy : MonoBehaviour
 
         if (player != null)
         {
-            Win();
+            //Win();
         }
     }
 
