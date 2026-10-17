@@ -61,6 +61,17 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
             Die();
         }
     }
+
+    public void AddHp(int howMuch)
+    {
+        currentHp = currentHp + howMuch;
+        // Lose condition
+        if (currentHp >maxHp)
+        {
+            currentHp = maxHp;
+        }
+    }
+
     public void Die()
     {
         // Destroy the current player object
