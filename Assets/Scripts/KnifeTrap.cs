@@ -1,16 +1,20 @@
 using UnityEngine;
-
-public class KnifeTrap : MonoBehaviour
+/*
+public class KnifeTrap : Trap
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public float closedTime;
+    public float openedTime;
+    public bool isActive = true;
+    public bool isOpened;
+
     void Start()
     {
-        
+        isOpened = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        //if(Time.deltaTime >= )
     }
-}
+
+}*/

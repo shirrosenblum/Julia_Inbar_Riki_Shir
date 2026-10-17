@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] players;
     public GameObject[] traps;
     public GameObject[] trapSpawnPoints;
+    public GameObject WinScreen;
     private GameObject activePlayer;
     private int selectedPlayerIndex;
     private int selectedTrapIndex;
@@ -82,5 +83,11 @@ public class GameManager : MonoBehaviour
     void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Win()
+    {
+        Debug.Log("Win");
+        WinScreen.SetActive(true);
     }
 }
