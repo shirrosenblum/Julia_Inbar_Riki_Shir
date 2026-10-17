@@ -13,12 +13,14 @@ public class GameManager : MonoBehaviour
     private int selectedTrapIndex;
 
     private int collectibleCount;
+    private int allCollectibles;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         SpawnRandomPlayer();
         SpawnRandomTrap();
+        allCollectibles = FindObjectsByType<Collectible>(FindObjectsInactive.Exclude).Length;
     }
 
     // Update is called once per frame
@@ -72,12 +74,22 @@ public class GameManager : MonoBehaviour
         // Increment the count of collectible objects collected.
         collectibleCount = collectibleCount + amount;
         Debug.Log("Count: " + collectibleCount);
+
+        if (collectibleCount >= allCollectibles )
+        {
+            WinGame();
+        }
     }
 
     public void GameOver()
     {
         Debug.Log("Game Over");
-        Invoke(nameof(ReloadScene), 3f);
+        Invoke(nameof(ReloadScene), 1.5f);
+    }
+    public void WinGame()
+    {
+        Debug.Log("YOU WIN!");
+        Invoke(nameof(ReloadScene), 1.5f);
     }
 
     void ReloadScene()
