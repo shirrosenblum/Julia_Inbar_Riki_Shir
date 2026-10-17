@@ -34,6 +34,10 @@ public class Projectile : MonoBehaviour
         {
             monsterTrap.TakeDamage(damageAmount);
         }
+        else
+        {
+            Debug.Log("eneter");
+        }
         Destroy(gameObject);
     }
     void OnCollisionEnter2D(Collision2D collision)
