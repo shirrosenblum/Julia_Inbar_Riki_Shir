@@ -7,8 +7,17 @@ public class WarriorCharacter : PlayableCharacter
     protected override void SpecialAbility()
     {
         base.SpecialAbility();
-        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 1f, Quaternion.identity);
+
+        float distance = 1f;
+
+        // if the Warrior turn right
+        if (moveDirection.x > 0)
+        {
+            distance = 0.5f;
+        }
+        Vector2 position = (Vector2)rigidbody2d.position + (moveDirection * distance);
+        GameObject projectileObject = Instantiate(projectilePrefab, position, Quaternion.identity);
         Projectile projectile = projectileObject.GetComponent<Projectile>();
-        projectile.Launch(moveDirection, 300);
+        projectile.Launch(moveDirection, 350);
     }
 }

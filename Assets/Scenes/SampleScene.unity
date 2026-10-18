@@ -550,7 +550,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5288248, y: -5.89, z: -10}
+  m_LocalPosition: {x: 3.5754466, y: -5.89, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -921,7 +921,15 @@ MonoBehaviour:
   - {fileID: 1255517459}
   - {fileID: 1237147580}
   - {fileID: 386527182}
+  liveIcons:
+  - {fileID: 832883357}
+  - {fileID: 1710543452}
+  - {fileID: 1303072017}
+  - {fileID: 1994270189}
+  - {fileID: 1843984254}
   WinScreen: {fileID: 1997565818}
+  gameoverScreen: {fileID: 144643298}
+  collectibleCountText: {fileID: 1732219486}
 --- !u!4 &704213037
 Transform:
   m_ObjectHideFlags: 0
@@ -11020,7 +11028,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1731222462
@@ -11392,7 +11400,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 32.48001, y: -55.649994}
+  m_AnchoredPosition: {x: 32.47998, y: -55.649994}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1899706763

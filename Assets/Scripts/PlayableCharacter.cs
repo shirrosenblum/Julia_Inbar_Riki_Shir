@@ -22,12 +22,20 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
     private float movementX;
     private float movementY;
 
+    // Variables related to animation
+    private Animator animator;
     void Start()
     {
         //Sets the current health to the maximum health points when the game starts
         currentHp = maxHp;
 
         gameManager = FindAnyObjectByType<GameManager>();
+        animator = GetComponent<Animator>();
+
+        if (gameManager != null)
+        {
+            gameManager.UpdateLivesIcons(currentHp);
+        }
     }
 
     // This function is called when a move input is detected.
@@ -55,6 +63,11 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
     public void TakeDamage(int howMuch)
     {
         currentHp = currentHp - howMuch;
+
+        if (gameManager != null)
+        {
+            gameManager.UpdateLivesIcons(currentHp);
+        }
         // Lose condition
         if (currentHp <= 0)
         {
@@ -66,7 +79,7 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
     {
         currentHp = currentHp + howMuch;
         // Lose condition
-        if (currentHp >maxHp)
+        if (currentHp > maxHp)
         {
             currentHp = maxHp;
         }
@@ -90,12 +103,21 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
         Vector2 position = (Vector2)rigidbody2d.position + move * speed * Time.deltaTime;
         rigidbody2d.MovePosition(position);
 
+
+        bool isMoving = !Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f);
+
         // Checks if there is  movement 
-        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
+        if (isMoving)
         {
             moveDirection.Set(move.x, move.y);
             moveDirection.Normalize();
         }
+
+        if (animator != null)
+        {
+            animator.SetBool("Running", isMoving);
+        }
+
     }
 
     public void ApplyDamage(IDamagable damagable)

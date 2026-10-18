@@ -3,7 +3,9 @@ using UnityEngine;
 public class Collectible : MonoBehaviour
 {
     private GameManager gameManager;
-    public int collectibleAmount = 1;
+    private int collectibleAmount = 1;
+
+    private bool isCollected = false;
 
     void Start()
     {
@@ -11,10 +13,16 @@ public class Collectible : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (isCollected)
+        {
+            return;
+        }
         PlayableCharacter player = other.GetComponent<PlayableCharacter>();
 
         if (player != null)
         {
+            isCollected = true;
+
             if (gameManager != null)
             {
                 gameManager.Collect(collectibleAmount);
