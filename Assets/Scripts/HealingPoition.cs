@@ -8,7 +8,8 @@ public class HealingPoition : Poition
         if (character != null)
         {
             character.AddHp(hp);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        
     }
 }

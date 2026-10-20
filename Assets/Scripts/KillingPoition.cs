@@ -1,8 +1,6 @@
 using UnityEngine;
 
 public class KillingPoition : Poition
-
-
 {
     public SpriteRenderer spriteRenderer;
 
@@ -12,8 +10,9 @@ public class KillingPoition : Poition
         if (character != null)
         {
             character.TakeDamage(hp);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        
     }
 
     public void Invisible(bool invisible)
