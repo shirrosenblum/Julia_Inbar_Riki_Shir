@@ -132,8 +132,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AthleteCharacter
   maxHp: 5
+  currentHp: 0
   rigidbody2d: {fileID: 7148264051999443751}
-  speed: 15
+  speed: 10
   moveDirection: {x: 1, y: 0}
 --- !u!70 &1790772463807968453
 CapsuleCollider2D:

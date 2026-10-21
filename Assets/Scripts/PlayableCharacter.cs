@@ -101,7 +101,7 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
         // Create a 2D movement vector using the X and Y inputs.
         Vector2 move = new Vector2(movementX, movementY);
         // Apply the new position and move the Rigidbody directly using physics.
-        Vector2 position = (Vector2)rigidbody2d.position + move * speed * Time.deltaTime;
+        Vector2 position = (Vector2)rigidbody2d.position + move * speed * Time.fixedDeltaTime;
         rigidbody2d.MovePosition(position);
 
 

@@ -3,6 +3,7 @@ using UnityEngine;
 public class WallTrap : Trap
 {
     private Animator animator;
+    [SerializeField] private float speedToPass ;
 
     void Start()
     {
@@ -21,7 +22,7 @@ public class WallTrap : Trap
         PlayableCharacter triggerPlayer = other.gameObject.GetComponent<PlayableCharacter>();
         if (triggerPlayer != null)
         {
-            if (triggerPlayer.speed < 15)
+            if (triggerPlayer.speed < speedToPass)
             {
                 ApplyDamage(triggerPlayer);
             }

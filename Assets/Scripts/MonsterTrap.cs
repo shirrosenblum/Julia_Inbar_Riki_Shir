@@ -21,7 +21,7 @@ public class MonsterTrap : Trap
         }
 
         Vector2 lookDirection = (player.transform.position - transform.position).normalized;
-        Vector2 position = (Vector2)enemyRb.position + lookDirection * speed * Time.deltaTime;
+        Vector2 position = (Vector2)enemyRb.position + lookDirection * speed * Time.fixedDeltaTime;
         enemyRb.MovePosition(position);
 
     }

@@ -100,11 +100,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1257322177359163963}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05df8a8f33cdfc843b2c2453526217de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WallTrap
+  speedToPass: 10
 --- !u!61 &3629560574494380005
 BoxCollider2D:
   m_ObjectHideFlags: 0
