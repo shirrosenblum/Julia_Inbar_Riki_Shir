@@ -6,9 +6,7 @@ using UnityEngine.InputSystem;
 public abstract class PlayableCharacter : MonoBehaviour, IDamagable
 {
     public int maxHp;
-    // getting the value of the currentHp private variable
-    public int health { get { return currentHp; } }
-    private int currentHp;
+    public int currentHp;
 
     private GameManager gameManager;
 
@@ -26,8 +24,6 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
     private Animator animator;
     void Start()
     {
-        //Sets the current health to the maximum health points when the game starts
-        currentHp = maxHp;
 
         gameManager = FindAnyObjectByType<GameManager>();
         animator = GetComponent<Animator>();
@@ -66,7 +62,7 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
 
         if (gameManager != null)
         {
-            gameManager.UpdateLivesIcons(currentHp);
+            gameManager.UpdateGlobalHp(currentHp);
         }
         // Lose condition
         if (currentHp <= 0)
@@ -82,6 +78,11 @@ public abstract class PlayableCharacter : MonoBehaviour, IDamagable
         if (currentHp > maxHp)
         {
             currentHp = maxHp;
+        }
+
+        if (gameManager != null)
+        {
+            gameManager.UpdateGlobalHp(currentHp);
         }
     }
 

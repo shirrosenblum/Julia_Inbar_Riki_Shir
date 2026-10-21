@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     private int collectibleCount;
     private int allCollectibles;
 
+    public int currentGlobalHp = 5;
+
     private Vector2 startingPlayerPosition = new Vector2(-5, -6);
 
 
@@ -45,11 +47,7 @@ public class GameManager : MonoBehaviour
         selectedPlayerIndex = Random.Range(0, players.Length);
         activePlayer = Instantiate(players[selectedPlayerIndex], startingPlayerPosition, Quaternion.identity);
 
-        if (cinemachineCamera != null && activePlayer != null)
-        {
-            cinemachineCamera.Target.TrackingTarget = activePlayer.transform;
-
-        }
+        SetUpPlayer();
     }
     void SpawnRandomTrap()
     {
@@ -85,7 +83,19 @@ public class GameManager : MonoBehaviour
         //Go through player index cycles in the array 
         selectedPlayerIndex = (selectedPlayerIndex + 1) % players.Length;
         //New selected player
-        activePlayer = Instantiate(players[selectedPlayerIndex],currentPosition, Quaternion.identity );
+        activePlayer = Instantiate(players[selectedPlayerIndex], currentPosition, Quaternion.identity);
+
+        SetUpPlayer();
+    }
+
+    private void SetUpPlayer()
+    {
+        PlayableCharacter character = activePlayer.GetComponent<PlayableCharacter>();
+        if (character != null)
+        {
+            character.currentHp = currentGlobalHp;
+            UpdateLivesIcons(character.currentHp);
+        }
 
         if (cinemachineCamera != null && activePlayer != null)
         {
@@ -112,6 +122,23 @@ public class GameManager : MonoBehaviour
         {
             collectibleCountText.text = collectibleCount.ToString();
         }
+    }
+
+    public void UpdateGlobalHp(int newHp)
+    {
+        currentGlobalHp = newHp;
+
+        if (activePlayer != null)
+        {
+            PlayableCharacter character = activePlayer.GetComponent<PlayableCharacter>();
+
+            if (character != null && currentGlobalHp > character.maxHp)
+            {
+                currentGlobalHp = character.maxHp;
+            }
+        }
+
+        UpdateLivesIcons(currentGlobalHp);
     }
 
     public void UpdateLivesIcons(int currentHp)
